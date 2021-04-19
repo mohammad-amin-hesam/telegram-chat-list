@@ -44,6 +44,11 @@ class MyDocument extends Document {
 						href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
 						rel="stylesheet"
 					/>
+					<link
+						rel="icon"
+						type="image/png"
+						href="https://telegram.org/img/t_logo.png?1"
+					/>
 				</Head>
 				<body dir="ltr">
 					<Main />
