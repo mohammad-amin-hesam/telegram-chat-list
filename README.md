@@ -1,12 +1,14 @@
-# Finology
-Sample landing page for test.
+# Digikala
+
+Sample telegram chat page for test.
 
 ## Installation
 
-Use the package manager [yarn](https://www.npmjs.com/package/yarn) 
-or [npm](https://www.npmjs.com/) to install Finology.
+Use the package manager [yarn](https://www.npmjs.com/package/yarn)
+or [npm](https://www.npmjs.com/) to install Digikala.
 
 ### Using npm:
+
 ```bash
 cd {project_foled}
 npm install
@@ -15,6 +17,7 @@ npm start
 ```
 
 ### Using yarn:
+
 ```bash
 cd {project_folder}
 yarn
@@ -25,4 +28,5 @@ yarn start
 #### Open brower in http://localhost:3000
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)

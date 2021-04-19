@@ -9,20 +9,34 @@ import { makeStore } from "../redux/store";
 
 // CSS...
 import reset from "../public/styles/reset";
-import grid from "../public/styles/grid";
 
-const GlobalStyle = createGlobalStyle`
-  ${grid}
-  ${reset}
-`;
-
-const theme = {
+export interface ThemeProps {
 	colors: {
-		primary: "#252584",
-		secondary: "#4DD7FF",
-		tertiary: "#A8A8C4",
+		primary: string;
+		secondary: string;
+		tertiary: string;
+		quaternary: string;
+		quinary: string;
+		senary: string;
+		septenary: string;
+	};
+}
+
+export const theme: ThemeProps = {
+	colors: {
+		primary: "#0E1621",
+		secondary: "#4388B9",
+		tertiary: "#F5F5F5",
+		quaternary: "#738495",
+		quinary: "#17212B",
+		senary: "#3E546A",
+		septenary: "#9fd1ff",
 	},
 };
+
+const GlobalStyle = createGlobalStyle`
+	${reset(theme)}
+`;
 
 class MyApp extends App<ReduxWrapperAppProps> {
 	static async getInitialProps({ Component, ctx }) {

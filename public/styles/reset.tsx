@@ -1,9 +1,14 @@
-export default `
+import { ThemeProps } from "../../pages/_app";
+
+export default (theme: ThemeProps) => {
+	const { colors } = theme;
+
+	return `
   body {
     margin: 0;
     padding: 0;
     direction: ltr;
-    background: #F9F9F9;
+    background: ${colors.primary};
     font-family: 'Nunito', sans-serif;
   }
   button::-moz-focus-inner {
@@ -15,6 +20,25 @@ export default `
     box-sizing: border-box;
     font-size: 100%;
     font-family: 'Nunito', sans-serif;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f113;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #88888850;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #55555550;
+    }
   }
   a {
     text-decoration: none;
@@ -97,3 +121,4 @@ export default `
     overflow-x: hidden !important;
   }
 `;
+};
