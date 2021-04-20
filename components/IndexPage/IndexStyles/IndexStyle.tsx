@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../../pages/_app";
+import { ContactProps } from "../../../redux/reducer/contactsReducer";
 
 export const StyledParentComponent = styled.main(() => {
 	return `
@@ -36,16 +37,23 @@ export const StyledConversationListHeader = styled.div((props) => {
     display: flex;
     align-items: center;
     height: 40px;
+    justify-content: space-between;
     border-bottom: 1px solid ${theme.colors.primary};
     .contact-button {
-      display: inline-flex;
-      cursor: pointer;
+      display: flex;
       align-items: center;
       padding: 0 10px;
       .contact-name {
-        color: ${theme.colors.septenary};
+        color: ${theme.colors.tertiary};
         margin-left: 5px;
         font-weight: 600;
+      }
+    }
+
+    @media only screen and (max-width: 1060px) {
+      justify-content: center;
+      .contact-button-hidden {
+        display: none;
       }
     }
   `;
@@ -63,7 +71,7 @@ export const StyleModalBox = styled.div((props) => {
     width: 100%;
     overflow-y: auto;
     z-index: 10000000;
-    background-color: #00000030;
+    background-color: #00000060;
     display: flex;
     align-items: center;
     padding: 30px;
@@ -71,8 +79,25 @@ export const StyleModalBox = styled.div((props) => {
     .modal-content {
       background-color: ${theme.colors.quinary};
       border-radius: 5px;
-      width: 300px;
+      width: 350px;
       flex: 1;
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      .modal-title {
+        color: ${theme.colors.tertiary};
+        font-size: 1.1rem;
+      }
+      .modal-close {
+        display: flex;
+        align-items: center;
+      }
     }
   `;
 });
@@ -90,7 +115,8 @@ export const StyledConversationDetails = styled.section(() => {
 export const StyledConversationItem = styled.section<{
 	image: string;
 	isActive?: boolean;
-}>(({ image, theme, isActive }) => {
+	description?: string;
+}>(({ image, theme, isActive, description }) => {
 	return `
     display: flex;
     padding: 10px;
@@ -116,7 +142,7 @@ export const StyledConversationItem = styled.section<{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 6px;
+        ${description ? "margin-bottom: 3px;" : ""}
         .conversation-title {
           color: ${theme.colors.tertiary};
         }
@@ -134,7 +160,7 @@ export const StyledConversationItem = styled.section<{
     }
 
     @media only screen and (max-width: 1060px) {
-      .conversation-content {
+      .hidden-content {
         display: none;
       }
     }
@@ -257,3 +283,84 @@ export const StyledConversationHeader = styled.div((props) => {
     }
   `;
 });
+
+export const StyledProfileInfo = styled.div<{ user?: ContactProps }>(
+	({ user, theme }) => {
+		return `
+      flex: 1;
+      .profile-header {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 8px solid #232E3C;
+        .profile-avatar {
+          width: 70px;
+          height: 70px;
+          background-image: url(${user?.avatar});
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 50%;
+        }
+      }
+      .profile-header-content {
+        margin-left: 15px;
+        .profile-name {
+          color: ${theme.colors.tertiary};
+          margin-bottom: 3px;
+        }
+        .profile-status {
+          color: ${theme.colors.quaternary};
+        }
+      }
+      .profile-bold {
+        .profile-name {
+          font-weight: 600;
+        }
+        .profile-status {
+          color: ${theme.colors.secondary};
+        }
+      }
+      .profile-light {
+        margin-bottom: 15px;
+        .profile-name, .profile-status {
+          font-size: .85rem;
+        }
+      }
+      .profile-content {
+        padding: 15px;
+        padding-top: 20px;
+        padding-right: 0;
+        display: flex;
+        align-items: flex-start;
+        .profile-info-box {
+          border-bottom: 1px solid ${theme.colors.primary};
+          margin-left: 15px;
+          flex: 1;
+          .profile-light {
+            margin-left: 0;
+          }
+        }
+        .profile-info-icon {
+          display: flex;
+          align-items: center;
+          margin: 15px;
+          margin-left: 0;
+          margin-top: 0;
+        }
+      }
+      .profile-send-message {
+        display: flex;
+        .send-message {
+          color: ${theme.colors.secondary};
+          font-size: .8rem;
+          font-weight: 600;
+          margin-left: 68px;
+          margin-right: 15px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
+      }
+    `;
+	}
+);

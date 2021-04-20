@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleModalBox } from "../IndexPage/IndexStyles/IndexStyle";
 import { AiOutlineClose } from "react-icons/ai";
+import { theme } from "../../pages/_app";
 
 const ModalBox: React.FC<{
 	handleClose: () => void;
@@ -28,12 +29,20 @@ const ModalBox: React.FC<{
 	};
 
 	return (
-		<StyleModalBox onClick={handleOutClick}>
+		<StyleModalBox
+			className={`${open ? "" : "d-none"}`}
+			onClick={handleOutClick}
+		>
 			<div className="modal-content" ref={content}>
 				<div className="modal-header">
 					<h4 className="modal-title">{title}</h4>
 					<div className="modal-close">
-						<AiOutlineClose />
+						<AiOutlineClose
+							size={20}
+							color={theme.colors.quaternary}
+							cursor="pointer"
+							onClick={handleClose}
+						/>
 					</div>
 				</div>
 				<div className="modal-content">{children}</div>

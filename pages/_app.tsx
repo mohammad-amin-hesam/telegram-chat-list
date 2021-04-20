@@ -36,6 +36,9 @@ export const theme: ThemeProps = {
 
 const GlobalStyle = createGlobalStyle`
 	${reset(theme)}
+	.d-none {
+		display: none !important;
+	}
 `;
 
 class MyApp extends App<ReduxWrapperAppProps> {

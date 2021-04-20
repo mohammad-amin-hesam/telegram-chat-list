@@ -4,8 +4,8 @@ export type ConversationItemProps = {
 	id: number;
 	avatar: string;
 	name: string;
-	time: string;
-	description: string;
+	time?: string;
+	description?: string;
 };
 
 export const conversationData: ConversationItemProps[] = [

@@ -3,6 +3,7 @@ import ConversationDetails from "../components/IndexPage/ConversationDetails/Con
 import ConversationList from "../components/IndexPage/ConversationList/ConversationList";
 import { StyledParentComponent } from "../components/IndexPage/IndexStyles/IndexStyle";
 import Head from "next/head";
+import ProfileModal from "../components/IndexPage/Profile/ProfileModal";
 
 const Index: NextPage = () => {
 	return (
@@ -14,6 +15,7 @@ const Index: NextPage = () => {
 				<ConversationList />
 				<ConversationDetails />
 			</StyledParentComponent>
+			<ProfileModal />
 		</>
 	);
 };

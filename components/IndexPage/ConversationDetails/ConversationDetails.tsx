@@ -10,8 +10,6 @@ const ConversationDetails: React.FC = () => {
 	const router = useRouter();
 	const { conversation_id } = router.query;
 
-	console.log(conversation_id);
-
 	return (
 		<StyledConversationDetails>
 			{conversation_id ? (

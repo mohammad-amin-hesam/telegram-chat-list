@@ -1,1 +1,1 @@
-export const FETCH_CONTACTS = "FETCH_CONTACTS";
+export const SHOW_PROFILE = "SHOW_PROFILE";
