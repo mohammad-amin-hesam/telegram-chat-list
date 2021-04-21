@@ -190,9 +190,11 @@ export const StyledConversationBox = styled.div(() => {
 	return `
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     flex: 1;
     overflow-y: auto;
+    .fix-item {
+      flex: 1 1 auto;
+    }
   `;
 });
 

@@ -13,3 +13,10 @@ export function uniq_id() {
 		return v.toString(16);
 	});
 }
+
+export function checkTime(i) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	return i;
+}

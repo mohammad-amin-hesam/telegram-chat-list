@@ -1,61 +1,88 @@
-import faker from "faker";
+import { AnyAction } from "redux";
+import { POST_MESSAGE } from "../types";
+import Router from "next/router";
+import { checkTime } from "../../helpers/props";
+import { stat } from "fs";
+
+export type ChatProps = {
+	text: string;
+	time: string;
+	isMine: boolean;
+};
 
 export type ConversationItemProps = {
 	id: number;
-	avatar: string;
-	name: string;
-	time?: string;
-	description?: string;
+	userId: number;
+	chatList: ChatProps[];
 };
 
-export const conversationData: ConversationItemProps[] = [
+const conversationData: ConversationItemProps[] = [
 	{
 		id: 1,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
+		userId: 1,
+		chatList: [
+			{
+				text: "Hi there",
+				time: "00:33",
+				isMine: false,
+			},
+		],
 	},
 	{
 		id: 2,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
+		userId: 2,
+		chatList: [
+			{
+				text: "Hi there",
+				time: "00:33",
+				isMine: false,
+			},
+		],
 	},
 	{
 		id: 3,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
+		userId: 3,
+		chatList: [
+			{
+				text: "Hi there",
+				time: "00:33",
+				isMine: false,
+			},
+		],
 	},
 	{
 		id: 4,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
+		userId: 4,
+		chatList: [
+			{
+				text: "Hi there",
+				time: "00:33",
+				isMine: false,
+			},
+		],
 	},
 	{
 		id: 5,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
-	},
-	{
-		id: 6,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
-	},
-	{
-		id: 7,
-		avatar: faker.image.avatar(),
-		time: "00:03",
-		name: faker.name.findName(),
-		description: "Hi there!",
+		userId: 5,
+		chatList: [
+			{
+				text: "Hi there",
+				time: "00:33",
+				isMine: false,
+			},
+		],
 	},
 ];
+
+export const conversationReducer = (
+	state = { list: conversationData, bool: false },
+	action: AnyAction
+) => {
+	switch (action.type) {
+		case POST_MESSAGE:
+			return action.data;
+
+		default:
+			return state;
+	}
+};

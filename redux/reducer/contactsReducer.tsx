@@ -7,6 +7,7 @@ export interface ContactProps {
 	phone: string;
 	bio: string;
 	username: string;
+	conversationId: number;
 }
 
 const defaultContacts: ContactProps[] = [
@@ -17,6 +18,7 @@ const defaultContacts: ContactProps[] = [
 		phone: "+98 915 322 8233",
 		bio: "Eminem Listener! :)",
 		username: "@gerg_runte",
+		conversationId: 1,
 	},
 	{
 		id: 2,
@@ -25,6 +27,7 @@ const defaultContacts: ContactProps[] = [
 		phone: "+98 123 322 8234",
 		bio: "Nothing! :/",
 		username: "@rachel_larson",
+		conversationId: 2,
 	},
 	{
 		id: 3,
@@ -33,6 +36,7 @@ const defaultContacts: ContactProps[] = [
 		phone: "+98 888 828 8283",
 		bio: "Hire me!",
 		username: "@amin_hesam",
+		conversationId: 3,
 	},
 	{
 		id: 4,
@@ -41,6 +45,7 @@ const defaultContacts: ContactProps[] = [
 		phone: "+98 991 435 5516",
 		bio: "Live your dreams.",
 		username: "@robin_deckow",
+		conversationId: 4,
 	},
 	{
 		id: 5,
@@ -49,6 +54,7 @@ const defaultContacts: ContactProps[] = [
 		phone: "+98 923 921 9322",
 		bio: "I love hip...hop! Nothing is like it xD",
 		username: "@schmitt",
+		conversationId: 5,
 	},
 ];
 

@@ -1,11 +1,16 @@
 import React from "react";
 import { trunc } from "../../../helpers/props";
 import { StyledConversationItem } from "../IndexStyles/IndexStyle";
-import { ConversationItemProps } from "../../../redux/reducer/conversationReducer";
 
 const ConversationItem: React.FC<{
 	isActive?: boolean;
-	data: ConversationItemProps;
+	data: {
+		avatar: string;
+		description?: string;
+		name: string;
+		time?: string;
+		id?: string;
+	};
 	onClick: (...args: any[]) => any;
 }> = ({ isActive, data, onClick }) => {
 	const { avatar, description, name, time } = data;

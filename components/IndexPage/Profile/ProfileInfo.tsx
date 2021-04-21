@@ -5,6 +5,7 @@ import { ContactProps } from "../../../redux/reducer/contactsReducer";
 import { StyledProfileInfo } from "../IndexStyles/IndexStyle";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { theme } from "../../../pages/_app";
+import { useRouter } from "next/dist/client/router";
 
 const NameDescription: React.FC<{
 	name: string;
@@ -23,11 +24,15 @@ const ProfileInfo: React.FC<{
 	handleClose: (...args: any[]) => any;
 }> = ({ handleClose }) => {
 	const { profileId, contacts } = useSelector((state) => state);
-	const dispatch = useDispatch();
-	const open = profileId !== -1;
+	const router = useRouter();
 	const user: ContactProps = contacts.filter(
 		(item) => item.id === profileId
 	)[0];
+
+	const handleSendMessage = (): void => {
+		handleClose();
+		router.push(`/?conversation_id=${user.conversationId}`);
+	};
 
 	return (
 		<StyledProfileInfo user={user}>
@@ -49,7 +54,7 @@ const ProfileInfo: React.FC<{
 					/>
 				</div>
 			</div>
-			<div className="profile-send-message">
+			<div className="profile-send-message" onClick={handleSendMessage}>
 				<span className="send-message">SEND MESSAGE</span>
 			</div>
 		</StyledProfileInfo>

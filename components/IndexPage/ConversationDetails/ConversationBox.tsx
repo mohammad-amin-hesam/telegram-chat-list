@@ -1,36 +1,40 @@
+import { useRouter } from "next/dist/client/router";
 import React from "react";
+import { useSelector } from "react-redux";
+import { ConversationItemProps } from "../../../redux/reducer/conversationReducer";
 import {
 	StyledChatItem,
 	StyledConversationBox,
 } from "../IndexStyles/IndexStyle";
 
 const ConversationBox: React.FC = () => {
+	const { conversations } = useSelector((state) => state);
+	const router = useRouter();
+	const { conversation_id } = router.query;
+	const box = React.useRef<HTMLDivElement>(null);
+	const conversation: ConversationItemProps = conversations.list.filter(
+		(item) => item.id === Number(conversation_id)
+	)[0];
+
+	React.useEffect(() => {
+		box.current.scrollTop = box.current?.scrollHeight;
+	}, [conversations]);
+
 	return (
-		<StyledConversationBox>
-			<StyledChatItem>
-				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque nemo
-					asperiores perferendis ullam eveniet in quas neque. Doloribus
-					consequatur atque nemo voluptates accusamus molestiae rerum, sint quo,
-					hic velit eveniet.
-				</p>
-				<span className="chat-item-time">23:17</span>
-			</StyledChatItem>
-			<StyledChatItem isMine>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, velit?
-				</p>
-				<span className="chat-item-time">23:17</span>
-			</StyledChatItem>
-			<StyledChatItem>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro officia
-					eveniet tempore consequuntur expedita, repudiandae possimus incidunt
-					alias debitis cum?
-				</p>
-				<span className="chat-item-time">23:17</span>
-			</StyledChatItem>
-		</StyledConversationBox>
+		<>
+			<input type="hidden" value={conversations.bool} />
+			<StyledConversationBox ref={box}>
+				<div className="fix-item"></div>
+				{conversation?.chatList.map((item, index) => {
+					return (
+						<StyledChatItem isMine={item.isMine} key={`cnvsnItem${index}`}>
+							<p>{item.text}</p>
+							<span className="chat-item-time">{item.time}</span>
+						</StyledChatItem>
+					);
+				})}
+			</StyledConversationBox>
+		</>
 	);
 };
 
